@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: route53-exporter
+  name: prometheus-route53-exporter
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: route53-exporter
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: route53-exporter
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '8090'
+    spec:
+      serviceAccountName: prometheus-route53-readonly
+      automountServiceAccountToken: true
+      containers:
+      - name: route53-exporter
+        image:  "docker-sandbox.infra.cloudera.com/pyadav/route53_exporter:latest"
+        env:
+          - name: AWS_ROLE_ARN
+            value: "arn:aws:iam::392479084068:role/prometheus-route53-readonly-test"
+          - name: AWS_WEB_IDENTITY_TOKEN_FILE
+            value: "/var/run/secrets/eks.amazonaws.com/serviceaccount/token"
+          - name: ACCOUNT
+            value: "manowar-dev"
+        ports:
+          - containerPort: 8090
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+    annotations:
+      eks.amazonaws.com/audience: sts.amazonaws.com
+      eks.amazonaws.com/role-arn: arn:aws:iam::392479084068:role/prometheus-route53-readonly-test
+    name: prometheus-route53-readonly
+    namespace: monitoring
+automountServiceAccountToken: true
