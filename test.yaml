@@ -27,7 +27,7 @@ spec:
         image:  "docker-sandbox.infra.cloudera.com/pyadav/route53_exporter:latest"
         env:
           - name: AWS_ROLE_ARN
-            value: "arn:aws:iam::392479084068:role/prometheus-route53-readonly-test"
+            value: "arn:aws:iam::<239847247293423423>:role/prometheus-route53-readonly-test"
           - name: AWS_WEB_IDENTITY_TOKEN_FILE
             value: "/var/run/secrets/eks.amazonaws.com/serviceaccount/token"
           - name: ACCOUNT
@@ -40,7 +40,7 @@ kind: ServiceAccount
 metadata:
     annotations:
       eks.amazonaws.com/audience: sts.amazonaws.com
-      eks.amazonaws.com/role-arn: arn:aws:iam::392479084068:role/prometheus-route53-readonly-test
+      eks.amazonaws.com/role-arn: arn:aws:iam::<23549874935793>:role/prometheus-route53-readonly-test
     name: prometheus-route53-readonly
     namespace: monitoring
 automountServiceAccountToken: true
