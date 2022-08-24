@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -80,7 +81,7 @@ func Route53Metrics() ([]*Route53Data, error) {
 		}
 		route53data = append(route53data, &Route53Data{
 			Name:         *hostedzone.Name,
-			Hostedzoneid: *hostedzone.Id,
+			Hostedzoneid: strings.Split(*hostedzone.Id, "/hostedzone/")[1],
 			PrivateZone:  strconv.FormatBool(*hostedzone.Config.PrivateZone),
 			Count:        float64(*hostedzone.ResourceRecordSetCount),
 			Limit:        float64(*limit.Limit.Value),
