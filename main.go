@@ -22,7 +22,7 @@ var (
 			Name:        "resourcerecordsetcount",
 			Help:        "Route53 RecordSet Count",
 			ConstLabels: prometheus.Labels{"account": csi_env},
-		}, []string{"name", "hostedzoneid", "privateZone"})
+		}, []string{"route53_hostname", "route53_hostedzoneid", "route53_privateZone"})
 	resourcerecordsetlimit_gauge = prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Namespace:   "aws_route53",
@@ -30,7 +30,7 @@ var (
 			Name:        "resourcerecordsetlimit",
 			Help:        "Route53 RecordSet Limit",
 			ConstLabels: prometheus.Labels{"account": csi_env},
-		}, []string{"name", "hostedzoneid", "privateZone"})
+		}, []string{"route53_hostname", "route53_hostedzoneid", "route53_privateZone"})
 )
 
 func main() {
