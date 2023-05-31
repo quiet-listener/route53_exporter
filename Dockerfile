@@ -1,4 +1,4 @@
-FROM golang:1.16 as builder
+FROM golang:1.17 as builder
 
 WORKDIR /route53_exporter
 # Copy the Go Modules manifests
