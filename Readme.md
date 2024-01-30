@@ -14,4 +14,4 @@ aws_route53_hostedzone_resourcerecordsetlimit{account="aws_account",hostedzoneid
 |privateZone|boolean true false|
 
 ### Builds and Images
- Builds and push of images to ghcr is automated through actions. Every merge to master or Creating a tag will trigger the workflow. Latest pushed images can be found here: route53_exporter latest pushed version is v1.0.6.
+ Builds and push of images to ghcr is automated through actions. Every merge to master or Creating a tag will trigger the workflow. Latest pushed images can be found here: [route53_exporter](https://github.com/quiet-listener/route53_exporter/pkgs/container/route53_exporter)  latest pushed version is [v1.0.6](https://github.com/quiet-listener/route53_exporter/pkgs/container/route53_exporter/172576281?tag=v1.0.6)
